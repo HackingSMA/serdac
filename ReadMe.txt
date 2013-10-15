@@ -1,12 +1,13 @@
-serdac is two channel a serial to analog interface, designed to control the powerchair through a modified joystick.
+serdac is two channel a serial to analog interface, designed to control a power wheelchair through a modified joystick.
+For more information see http://www.hackingsma.com/?p=257
 The serdac PCB and a 5-pin XLR connector replace the analog joystick. Serial data is transmitted in a packet format,
 each channel value is represented by a signed 16-bit integer (although the dac is only 12-bit, the low 4 bits are ignored).
-If the incoming serial data stream stops for more than 100ms the device reverts to neutral (1/2 vref) output voltage.
+If the incoming serial data stream stops for more than 100ms the device reverts to neutral (1/2 vref) output voltage for two seconds before resuming normal operation.
 
 serdac receives serial data at 115200 baud, 8N1 the data packet format is as follows:
 	0xaa (sync)
 	0xaa (sync)
-	0x04 (length of payload, ie. 4 bytes)
+	0x04 (length of payload to follow, ie. 4 bytes)
 	Xmsb
 	Xlsb
 	Ymsb
